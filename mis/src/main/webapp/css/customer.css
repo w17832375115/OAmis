@@ -1,0 +1,20 @@
+.layer-date {
+	    max-width: 100%;
+	}
+.tips{ padding-top: 7px;}	
+.tips input{ margin-left: 15px; margin-right: 3px;}
+.mylogo{ height: 50px;}
+.mylogo>span{ margin-right: 15px;}
+.mylogo>span,.mylogo>span{ float: left;}
+.file-name small{ display: block; width: 100%; overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.logoshow img{ margin: 20px 20px 20px 0px; width: 200px; height: 200px;}
+.show-text{ line-height: 34px;}
+
+/*修改ueditor与bootstrap样式冲突*/
+.edui-toolbar>.edui-gray{ min-width: 30px; min-height: 30px;}
+.edui-toolbar .edui-button-wrap{min-width: 30px; min-height: 30px;}
+.edui-toolbar .edui-separator{ min-width: 10px;}
+
+
+.indexvalue-title{ margin: 5px 0px 20px 0px;}
+.indexvalue-text{padding: 5px 5%;}

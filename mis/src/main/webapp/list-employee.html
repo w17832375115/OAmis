@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from www.gzsxt.cn/theme/hplus/table_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:20:01 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>绿地中央广场综合物业办公系统 - 基础表格</title>
+    <meta name="keywords" content="综合办公系统">
+    <meta name="description" content="综合办公系统">
+
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link href="css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min862f.css?v=4.1.0" rel="stylesheet">
+    <link href="css/plugins/select/bootstrap-select.min.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+	<div class="wrapper2 wrapper-content2 animated fadeInRight">
+    <div class="ibox float-e-margins">
+                   <div class="ibox-content">
+                        <div class="row">
+                            <form id="searchForm">
+                        		<div class="col-sm-3 col-sm-offset-2 text-right">
+                        			<h3><small>搜索条件:</small></h3>
+                        		</div>
+                                <div class="col-sm-2">
+                                    <select name="condition" class="selectpicker form-control">
+                                        <option value="0">选择类型</option>
+                                        <option value="1">员工姓名</option>
+                                        <option value="2">所属部门</option>
+                                    </select>
+                                </div>
+                           
+                                 <div class="col-sm-3">
+                                    <div class="input-group">
+                                    <input type="text" name="keyword" placeholder="请输入关键词" class="input-sm form-control">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="searchBtn" class="btn btn-sm btn-primary"><i class="fa fa-search"></i>搜索</button>
+                                    </span>
+                                    </div>
+                                 </div>
+                            </form>
+
+                            <div class="col-sm-2 text-right">
+                            	 <a href="save-employee.html" class="btn btn-sm btn-primary" type="button"><i class="fa fa-plus-circle"></i> 添加员工</a>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed2"></div>
+                        <div class="table-responsive">
+                            <table class="table table-striped list-table">
+                                <thead>
+                                    <tr>
+                                        <th>选择</th>
+                                        <th>序号</th>
+                                        <th>姓名</th>
+                                        <th>职位</th>
+                                        <th>性别</th>
+                                        <th>联系电话</th>
+                                        <th>入职时间</th>
+                                        <th>状态</th>
+                                        <th class="text-center">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+<!--                                    <tr>-->
+<!--                                        <td><input  type="checkbox" checked=""></td>-->
+<!--										<td>1</td>-->
+<!--										<td>李晓明</td>-->
+<!--										<td>初级开发工程师</td>-->
+<!--										<td>男</td>-->
+<!--										<td>24</td>-->
+<!--										<td>13288888888</td>-->
+<!--										<td>2015-01-03</td>-->
+<!--                                        <td class="text-right">-->
+<!--	                                       <a href="show-employee.html" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>编辑</a>	                   -->
+<!--	                                       <button class="btn btn-danger btn-xs btndel"><i class="fa fa-close"></i>删除</button>-->
+<!--                                        </td>-->
+                                    <!-- </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                       
+                        <div class="row">
+	                        	<div class="col-sm-5">
+	                        		<button class="btn btn-sm btn-primary" type="button" id="chooseAll"><i class="fa fa-check-square-o"></i> 全选</button>
+	                        		<button class="btn btn-sm btn-primary" type="button" id="reverse"><i class="fa fa-square-o"></i> 反选</button>
+	                        		<button class="btn btn-sm btn-primary" type="button" id="deleteBtn"><i class="fa fa-times-circle-o"></i> 删除</button>
+	                        		<button id="demo1" class="btn btn-sm btn-primary" type="button"><i class="fa fa-table"></i> <a href="emp/download">导出Excel</a></button>
+	                        	</div>
+							<div id="dd" class="col-sm-7 text-right">
+						
+<!--								    <span>共有50页,当前是第3页</span>-->
+<!--	                                <a href=''>首页</a>-->
+<!--	                                <a href=''>上一页</a>-->
+<!--	                                <a href=''>下一页</a>-->
+<!--	                                <a href=''>尾页</a>-->
+	                           
+							</div>
+                        </div>
+						
+                    </div>
+                </div>
+     </div>       
+    <script src="js/jquery.min.js?v=2.1.4"></script>
+    <script src="js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="js/plugins/select/bootstrap-select.min.js"></script>
+    <script src="js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="js/jquery.serializejson.min.js" type="text/javascript" charset="utf-8"></script>
+
+   <script>
+	$(document).ready(function() {
+		// 设置按钮的样式
+		$('.selectpicker').selectpicker('setStyle', 'btn-white').selectpicker('setStyle', 'btn-sm');
+		
+		//点击删除
+		$('.btndel').click(function () {
+		    swal({
+		        title: "您确定要删除这条信息吗",
+		        text: "删除后将无法恢复，请谨慎操作！",
+		        type: "warning",
+		        showCancelButton: true,
+		        confirmButtonColor: "#DD6B55",
+		        confirmButtonText: "删除",
+		        closeOnConfirm: false
+		    }, function () {//此函数是点击删除执行的函数
+		    		//这里写ajax代码
+		    		// 以下是成功的提示框，请在ajax回调函数中执行
+			    swal("删除成功！", "您已经永久删除了这条信息。", "success");
+		    });
+		});
+		var pageNum = 1
+        var pageSize = 3
+
+		show(pageNum,pageSize)
+
+        $("#searchBtn").click(function (){
+
+            show(pageNum,pageSize)
+
+        })
+
+        $("#chooseAll").click(function (){
+            $("input[name='eid']").each(function () {
+                this.checked = "checked"
+            })
+
+        })
+
+        $("#reverse").click(function (){
+            $("input[name='eid']").each(function () {
+                this.checked = !this.checked
+            })
+        })
+
+        $("#deleteBtn").click(function (){
+            var arr = new Array()
+            $("input[name='eid']:checked").each(function (i,n){
+                arr[i] = this.value
+            })
+            var ids = arr.join("-")
+            del(ids)
+
+        })
+    });
+    function del(obj){
+        $.ajax({
+            url: "emp/"+obj,
+            type:"post",
+            dataType: "json",
+            success:function (ret) {
+                if (ret.status){
+                    window.location.reload()
+                }
+            }
+        })
+
+    }
+
+	function show(pageNum, pageSize) {
+        // var data = $("#searchForm").serializeJSON()
+        // var searchObj = JSON.stringify(data)
+        // console.log(searchObj)
+
+        var condition = $("select[name ='condition']").val()
+        var keyword = $("input[name='keyword']").val()
+	    $.ajax({
+            url:"emp/"+pageNum+"/"+pageSize,
+            type:"get",
+            data: {condition:condition,keyword:keyword},
+            dataType:"json",
+            // contentType:"application/json",
+            success:function (ret) {
+                if (ret.status){
+                    $("#dd").empty()
+                    $("tbody").empty()
+
+                    $.each(ret.data.pageInfo.list,function (i,emp){
+                        $("tbody").append('<tr><td><input  name="eid" type="checkbox" value="'+emp.eid+'"></td>'
+								+'<td>'+(i+1)+'</td>'
+								+'<td>'+emp.ename+'</td>'
+								+'<td>'+emp.dept.dname+'</td>'
+								+'<td>'+emp.esex+'</td>'
+								+'<td>'+emp.telephone+'</td>'
+								+'<td>'+emp.hiredate+'</td>'
+								+'<td>'+emp.remark+'</td>'
+								+'<td class="text-right">'
+								+'<a href="show-employee.html?id='+emp.eid+'" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>编辑</a>'
+								+'<button class="btn btn-danger btn-xs btndel" onclick="del('+emp.eid+')"><i class="fa fa-close"></i>删除</button>'
+								+'</td></tr>')
+
+                    })
+
+					$("#dd").append(' <span>共有'+ret.data.pageInfo.pages+'页,当前是第'+ret.data.pageInfo.pageNum+'页</span>\n' +
+					    '<a href="javascript:void (0)" onclick="show(1,'+pageSize+')">首页</a>\n' +
+					    '<a href="javascript:void (0)" onclick="show('+ret.data.pageInfo.prePage+','+pageSize+')">上一页</a>\n' +
+					    '<a href="javascript:void (0)" onclick="show('+ret.data.pageInfo.nextPage+','+pageSize+')">下一页</a>\n' +
+					    '<a href="javascript:void (0)" onclick="show('+ret.data.pageInfo.pages+','+pageSize+')">尾页</a>')
+
+                }
+            }
+        })
+    }
+    </script>
+    
+</body>
+
+
+</html>
+    
